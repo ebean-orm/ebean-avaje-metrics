@@ -79,8 +79,4 @@
     </plugins>
   </build>
 
-
-  <scm>
-    <tag>ebean-avaje-metrics-1.1</tag>
-  </scm>
 </project>
