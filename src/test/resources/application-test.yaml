@@ -1,0 +1,18 @@
+ebean:
+  test:
+    platform: h2 # h2, postgres, mysql, oracle, sqlserver, sqlite
+    ddlMode: dropCreate # none | dropCreate | create | migration | createOnly | migrationDropCreate
+    dbName: my_app
+
+  orgdb:
+    ddl:
+      generate: true
+      run: true
+      seedSql: seed-org.sql
+
+datasource:
+  orgdb:
+    username: sa
+    password: ""
+    url: jdbc:h2:mem:test2
+    driver: org.h2.Driver
