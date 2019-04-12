@@ -86,7 +86,7 @@
         <extensions>true</extensions>
         <configuration>
           <tiles>
-            <tile>io.ebean.tile:enhancement:11.36.1</tile>
+            <tile>io.ebean.tile:enhancement:11.37.1</tile>
           </tiles>
         </configuration>
       </plugin>
