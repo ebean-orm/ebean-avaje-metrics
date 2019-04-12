@@ -7,6 +7,7 @@ import io.ebean.config.DatabaseConfig;
 import org.avaje.metric.MetricManager;
 import org.avaje.metric.statistics.MetricStatistics;
 import org.domain.Customer;
+import org.domain.MyService;
 import org.domain.Org;
 import org.junit.Test;
 
@@ -16,6 +17,8 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DbMetricSupplierTest {
+
+  private MyService myService = new MyService();
 
   @Test
   public void collectMetrics() {
@@ -44,15 +47,15 @@ public class DbMetricSupplierTest {
       .findList();
 
     db2.find(Org.class)
-      .setLabel("orgs")
       .findList();
 
+    myService.doit();
 
     List<MetricStatistics> metrics = MetricManager.collectNonEmptyMetrics();
 
     List<String> names = metrics.stream().map(MetricStatistics::getName).collect(Collectors.toList());
 
-    assertThat(names).contains("db.txn.main", "db.query.allCustomer", "orgdb.txn.main", "orgdb.query.orgs");
+    assertThat(names).contains("db.txn.main", "db.query.Customer_allCustomer", "db.query.Customer_MyService.doit", "orgdb.txn.main", "orgdb.query.Org.findList");
 
   }
 }
